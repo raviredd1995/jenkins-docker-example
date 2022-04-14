@@ -1,4 +1,4 @@
 FROM openjdk
-COPY target/*.jar /
+COPY /var/lib/jenkins/workspace/k8s-pipeline/target/*.jar .
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/my-app-1.0-SNAPSHOT.jar"]
