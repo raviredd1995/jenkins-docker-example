@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: javawebappcontainer
-        image: 706221550922.dkr.ecr.us-east-1.amazonaws.com/first-repo:latest
+        image: 706221550922.dkr.ecr.us-east-1.amazonaws.com/first-repo 
         ports:
         - containerPort: 8080
 
