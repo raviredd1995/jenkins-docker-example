@@ -1,41 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
-metadata: 
+metadata:
   name: webappdeployment
   namespace: ravi-ns
-  selectors:
+spec:
+  replicas: 2
+  selector:
     matchLabels:
       app: javawebapp
-  strategy: 
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-  minReadySeconds: 30
   template:
     metadata:
-      name: webapp
+      name: webapppod
       labels:
         app: javawebapp
+    spec:
       containers:
       - name: javawebappcontainer
         image: 706221550922.dkr.ecr.us-east-1.amazonaws.com/first-repo:latest
         ports:
         - containerPort: 8080
-          
+
 ---
 # Node Port Service
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    name: javawebapp
-  name: javawebapp
+  name: javawebappservice
+  #selector:
+  #  app: javawebapp
 spec:
   type: NodePort
   ports:
     - port: 8080
       targetPort: 8080
   selector:
-    name: javawebapp
-
+    app: javawebapp
